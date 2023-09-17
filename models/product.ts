@@ -1,6 +1,6 @@
 // Product Model
 
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import Category, { ICategory } from "./category";
 
 /**
@@ -48,7 +48,12 @@ const productSchema = new Schema<IProduct>(
     price: Number,
     salesPrice: Number,
     reviews: [],
-    categories: [Category],
+    categories: [
+      {
+        type: Types.ObjectId,
+        ref: "Category",
+      },
+    ],
     url: String,
   },
   { timestamps: true }

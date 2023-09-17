@@ -47,13 +47,34 @@ const userSchema = new Schema<IUser>({
   password: String,
   isLinkedWithGoogle: Boolean,
   passwordResetToken: String,
-  orders: [Order],
-  lists: [List],
-  billingDetails: BillingDetails,
+  orders: [
+    {
+      type: Types.ObjectId,
+      ref: "Order",
+    },
+  ],
+  lists: [
+    {
+      type: Types.ObjectId,
+      ref: "List",
+    },
+  ],
+  billingDetails: {
+    type: Types.ObjectId,
+    ref: "BillingDetails",
+  },
   profileImage: String,
-  reviews: [Review],
+  reviews: [
+    {
+      type: Types.ObjectId,
+      ref: "Review",
+    },
+  ],
   isSubscribed: Boolean,
-  cart: Cart,
+  cart: {
+    type: Types.ObjectId,
+    ref: "Cart",
+  },
 });
 
 const User = model<IUser>("User", userSchema);
