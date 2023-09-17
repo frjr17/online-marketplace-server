@@ -12,4 +12,4 @@ const BillingDetails = model<IBillingDetails>(
   billingDetailsSchema
 );
 
-export default { BillingDetails };
+export default BillingDetails;

@@ -1,6 +1,7 @@
 // Product Model
 
 import { Schema, model } from "mongoose";
+import Category, { ICategory } from "./category";
 
 /**
  * Product data to save:
@@ -18,10 +19,7 @@ import { Schema, model } from "mongoose";
  * categories: [Category]
  * url: string
  */
-interface ICategory {
-  // Define the properties of the Category interface here
-}
-interface IProduct {
+export interface IProduct {
   name: string;
   description?: string;
   mainImage: string;
@@ -50,10 +48,12 @@ const productSchema = new Schema<IProduct>(
     price: Number,
     salesPrice: Number,
     reviews: [],
-    categories: [],
+    categories: [Category],
     url: String,
   },
   { timestamps: true }
 );
 
 const Product = model("Product", productSchema);
+
+export default Product;

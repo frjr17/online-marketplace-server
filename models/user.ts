@@ -1,6 +1,11 @@
 // User Model
 
 import { Schema, Types, model } from "mongoose";
+import Order, { IOrder } from "./order";
+import List, { IList } from "./list";
+import BillingDetails, { IBillingDetails } from "./billing";
+import Review, { IReview } from "./review";
+import Cart, { ICart } from "./cart";
 
 /**
  * User data to store:
@@ -18,25 +23,6 @@ import { Schema, Types, model } from "mongoose";
  * isSubscribed: boolean
  * cart: Cart
  */
-interface IBillingDetails {
-  // Define the properties of the BillingDetails interface here
-}
-
-interface IReview {
-  // Define the properties of the Review interface here
-}
-
-interface IOrder {
-  // Define the properties of the Order interface here
-}
-
-interface IList {
-  // Define the properties of the List interface here
-}
-
-interface ICart {
-  // Define the properties of the Cart interface here
-}
 
 interface IUser {
   name: string;
@@ -54,26 +40,6 @@ interface IUser {
   cart: ICart;
 }
 
-const billingDetailsSchema = new Schema<IBillingDetails>({
-  // Define the schema for BillingDetails here
-});
-
-const reviewSchema = new Schema<IReview>({
-  // Define the schema for Review here
-});
-
-const orderSchema = new Schema<IOrder>({
-  // Define the schema for Order here
-});
-
-const listSchema = new Schema<IList>({
-  // Define the schema for List here
-});
-
-const cartSchema = new Schema<ICart>({
-  // Define the schema for Cart here
-});
-
 const userSchema = new Schema<IUser>({
   name: String,
   lastName: String,
@@ -81,15 +47,15 @@ const userSchema = new Schema<IUser>({
   password: String,
   isLinkedWithGoogle: Boolean,
   passwordResetToken: String,
-  orders: [orderSchema],
-  lists: [listSchema],
-  billingDetails: billingDetailsSchema,
+  orders: [Order],
+  lists: [List],
+  billingDetails: BillingDetails,
   profileImage: String,
-  reviews: [reviewSchema],
+  reviews: [Review],
   isSubscribed: Boolean,
-  cart: cartSchema,
+  cart: Cart,
 });
 
-const UserModel = model<IUser>("User", userSchema);
+const User = model<IUser>("User", userSchema);
 
-export { IUser, UserModel };
+export default User;

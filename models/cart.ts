@@ -9,4 +9,4 @@ const cartSchema = new Schema<ICart>({
 
 const Cart = model<ICart>("Cart", cartSchema);
 
-export default { Cart };
+export default Cart;

@@ -9,4 +9,4 @@ const reviewSchema = new Schema<IReview>({
 
 const Review = model<IReview>("Review", reviewSchema);
 
-export default { Review };
+export default Review;

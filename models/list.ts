@@ -9,4 +9,4 @@ const listSchema = new Schema<IList>({
 
 const List = model<IList>("List", listSchema);
 
-export default { List };
+export default List;
