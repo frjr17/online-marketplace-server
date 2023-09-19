@@ -32,7 +32,7 @@ export interface IUser {
   isLinkedWithGoogle?: boolean;
   passwordResetToken?: string;
   orders?: Types.Array<IOrder>;
-  lists: Types.Array<IList>;
+  lists?: Types.Array<IList>;
   billingDetails?: IBillingDetails;
   profileImage?: string;
   reviews?: Types.Array<IReview>;
