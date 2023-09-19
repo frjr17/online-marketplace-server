@@ -1,10 +1,20 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
+import { IProduct } from "./product";
 
 export interface IList {
-  // Define the properties of the List interface here
+  name: string;
+  products: Types.Array<IProduct>;
+  total: number;
 }
 const listSchema = new Schema<IList>({
-  // Define the schema for List here
+  name: String,
+  products: [
+    {
+      type: Types.ObjectId,
+      ref: "Product",
+    },
+  ],
+  total: Number,
 });
 
 const List = model<IList>("List", listSchema);
