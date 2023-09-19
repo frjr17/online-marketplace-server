@@ -1,10 +1,17 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
+import { IProduct } from "./product";
 
 export interface ICart {
-  // Define the properties of the Cart interface here
+  products: Types.Array<IProduct>;
+  total: number;
 }
 const cartSchema = new Schema<ICart>({
-  // Define the schema for Cart here
+  products: [
+    {
+      type: Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const Cart = model<ICart>("Cart", cartSchema);
