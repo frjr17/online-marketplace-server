@@ -1,10 +1,18 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
+import { IProduct } from "./product";
 
 export interface ICategory {
-  // Define the properties of the Category interface here
+  name: string;
+  products: Types.Array<IProduct>;
 }
 const categorySchema = new Schema<ICategory>({
-  // Define the schema for Category here
+  name: String,
+  products: [
+    {
+      type: Types.ObjectId,
+      ref: "Product",
+    },
+  ],
 });
 
 const Category = model<ICategory>("Category", categorySchema);
