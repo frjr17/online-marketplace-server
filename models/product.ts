@@ -1,6 +1,6 @@
 // Product Model
 
-import { Schema, Types, model } from "mongoose";
+import { Schema, TypeKeyBaseType, Types, model } from "mongoose";
 import Category, { ICategory } from "./category";
 
 /**
@@ -31,7 +31,7 @@ export interface IProduct {
   price: number;
   salesPrice?: number;
   reviews?: any[];
-  categories: ICategory[];
+  categories: Types.Array<ICategory>;
   url: string;
 }
 
