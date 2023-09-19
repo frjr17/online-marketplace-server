@@ -24,8 +24,8 @@ import Cart, { ICart } from "./cart";
  * cart: Cart
  */
 
-interface IUser {
-  name: string;
+export interface IUser {
+  firstName: string;
   lastName: string;
   email: string;
   password?: string;
@@ -41,7 +41,7 @@ interface IUser {
 }
 
 const userSchema = new Schema<IUser>({
-  name: String,
+  firstName: String,
   lastName: String,
   email: String,
   password: String,
