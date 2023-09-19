@@ -1,10 +1,12 @@
 import { Schema, Types, model } from "mongoose";
 import { IProduct } from "./product";
+import { IUser } from "./user";
 
 export interface IList {
   name: string;
   products: Types.Array<IProduct>;
   total: number;
+  user: IUser;
 }
 const listSchema = new Schema<IList>({
   name: String,
@@ -15,6 +17,10 @@ const listSchema = new Schema<IList>({
     },
   ],
   total: Number,
+  user: {
+    type: Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const List = model<IList>("List", listSchema);
