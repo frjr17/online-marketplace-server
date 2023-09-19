@@ -12,6 +12,7 @@ const cartSchema = new Schema<ICart>({
       ref: "Product",
     },
   ],
+  total: Number,
 });
 
 const Cart = model<ICart>("Cart", cartSchema);
