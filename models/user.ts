@@ -29,7 +29,7 @@ export interface IUser {
   lastName: string;
   email: string;
   password?: string;
-  isLinkedWithGoogle?: boolean;
+  isLinkedWithGoogle: boolean;
   passwordResetToken?: string;
   orders?: Types.Array<IOrder>;
   lists?: Types.Array<IList>;
