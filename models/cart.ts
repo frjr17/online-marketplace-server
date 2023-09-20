@@ -1,9 +1,11 @@
 import { Schema, Types, model } from "mongoose";
 import { IProduct } from "./product";
+import { IUser } from "./user";
 
 export interface ICart {
   products: Types.Array<IProduct>;
   total: number;
+  user: IUser;
 }
 const cartSchema = new Schema<ICart>({
   products: [
@@ -13,6 +15,10 @@ const cartSchema = new Schema<ICart>({
     },
   ],
   total: Number,
+  user: {
+    type: Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Cart = model<ICart>("Cart", cartSchema);
