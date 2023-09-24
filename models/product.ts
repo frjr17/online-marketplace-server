@@ -27,7 +27,10 @@ export interface IProduct {
   colors?: string[];
   sizes: string[];
   stockQuantity: number;
-  rating: number;
+  rating: {
+    rate: number;
+    count: number;
+  };
   price: number;
   salesPrice?: number;
   reviews?: any[];
@@ -44,7 +47,10 @@ const productSchema = new Schema<IProduct>(
     colors: [String],
     sizes: [String],
     stockQuantity: Number,
-    rating: Number,
+    rating: {
+      rate: Number,
+      count: Number,
+    },
     price: Number,
     salesPrice: Number,
     reviews: [],

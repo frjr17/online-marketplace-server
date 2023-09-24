@@ -25,9 +25,5 @@ export const seedUsers = async () => {
 
     user.cart = cart;
     await user.save();
-
-    if (i === 1) {
-      console.log(user);
-    }
   }
 };
