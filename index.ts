@@ -15,7 +15,8 @@ app.get("/", (req: Request, res: Response) => {
 
 mongoose.connect(process.env.MONGO_DB_KEY as string).then(() => {
   app.listen(port, () => {
-    seedDb();
+    // If you need to seed the database again...
+    // seedDb();
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
   });
 });
