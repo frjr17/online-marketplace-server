@@ -23,7 +23,7 @@ export const seedProducts = async () => {
       };
       product.url = newProduct.id;
     }
-    console.log("Categories Size:", categories.size);
+
     await categories.forEach(async (category) => {
       let newCategory = new Category({
         name: category,

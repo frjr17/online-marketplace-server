@@ -12,7 +12,7 @@ import Category, { ICategory } from "./category";
  * colors?: []
  * sizes: []
  * stockQuatity: number
- * rating: float (0-5)
+ * rating: {rate:number, count:number}
  * price: float (.2 decimals)
  * salesPrice?: float (.2 decimals)
  * reviews?:[]
