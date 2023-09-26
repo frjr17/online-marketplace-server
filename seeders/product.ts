@@ -5,23 +5,25 @@ import Category from "../models/category";
 export const seedProducts = async () => {
   try {
     const categories = new Set();
-    const products: IProduct[] = [];
+    const products: Partial<IProduct & { possibleCategory: string }>[] = [];
     for (let i = 0; i < 100; i++) {
       const newProduct = randProduct();
 
       categories.add(newProduct.category);
 
-      let product: Partial<IProduct> = {};
+      let product: Partial<IProduct & { possibleCategory: string }> = {};
       product.name = newProduct.title;
       product.description = newProduct.description;
       product.mainImage = newProduct.image;
       product.price = parseFloat(newProduct.price);
+      product.stockQuantity = Math.floor(Math.random() * 100);
       product.salesPrice = product.price - product.price * 0.2;
+      product.possibleCategory = newProduct.category;
       product.rating = {
         rate: parseFloat(newProduct.rating.rate),
         count: parseFloat(newProduct.rating.count),
       };
-      product.url = newProduct.id;
+      products.push(product);
     }
 
     await categories.forEach(async (category) => {
@@ -32,11 +34,24 @@ export const seedProducts = async () => {
     });
     console.log("Categories Seeded Successfully!!");
 
-    for await (let product of products) {
-      let newProduct = new Product({ ...product });
+    await products.forEach(async (product) => {
+      const newProduct = new Product({ ...product });
+      newProduct.url = newProduct._id.toString();
+
+      const category = await Category.findOne({
+        name: product.possibleCategory,
+      });
+
+      newProduct.categories.push(category);
       await newProduct.save();
-    }
-    console.log("Products Seeded Successfully!!");
+
+      if (category) {
+        category?.products.push(newProduct);
+        await category.save();
+      }
+    });
+
+    console.log("Products seeded successfully!!");
   } catch (error) {
     console.log(error);
   }

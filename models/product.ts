@@ -1,7 +1,7 @@
 // Product Model
 
-import { Schema, TypeKeyBaseType, Types, model } from "mongoose";
-import Category, { ICategory } from "./category";
+import { Schema, Types, model } from "mongoose";
+import { ICategory } from "./category";
 
 /**
  * Product data to save:
@@ -65,6 +65,6 @@ const productSchema = new Schema<IProduct>(
   { timestamps: true }
 );
 
-const Product = model("Product", productSchema);
+const Product = model<IProduct>("Product", productSchema);
 
 export default Product;
