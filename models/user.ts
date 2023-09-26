@@ -41,11 +41,26 @@ export interface IUser {
 }
 
 const userSchema = new Schema<IUser>({
-  firstName: String,
-  lastName: String,
-  email: String,
-  password: String,
-  isLinkedWithGoogle: Boolean,
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isLinkedWithGoogle: {
+    type: Boolean,
+    required: true,
+  },
   passwordResetToken: String,
   orders: [
     {
