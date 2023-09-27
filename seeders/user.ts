@@ -15,6 +15,7 @@ export const seedUsers = async () => {
     user.profileImage = userMainDetails.img;
     user.isSubscribed = false;
     user.isLinkedWithGoogle = false;
+    user.isVerfied = true;
     await user.save();
 
     const cart = new Cart();
