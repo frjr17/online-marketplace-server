@@ -2,6 +2,7 @@
 
 import { Schema, Types, model } from "mongoose";
 import { ICategory } from "./category";
+import { IReview } from "./review";
 
 /**
  * Product data to save:
@@ -33,7 +34,7 @@ export interface IProduct {
   };
   price: number;
   salesPrice?: number;
-  reviews?: any[];
+  reviews?: IReview[];
   categories: Types.Array<ICategory>;
   url: string;
 }

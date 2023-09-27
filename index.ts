@@ -1,9 +1,8 @@
-import express, { Express, Request, Response } from "express";
+import express from "express";
+import type { Express } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { seedProducts } from "./seeders/product";
-import { seedDb } from "./seeders";
-import createRouter, { router } from "express-file-routing";
+import createRouter from "express-file-routing";
 
 dotenv.config({ path: ".env.local" });
 

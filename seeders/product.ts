@@ -11,7 +11,7 @@ export const seedProducts = async () => {
 
       categories.add(newProduct.category);
 
-      let product: Partial<IProduct & { possibleCategory: string }> = {};
+      const product: Partial<IProduct & { possibleCategory: string }> = {};
       product.name = newProduct.title;
       product.description = newProduct.description;
       product.mainImage = newProduct.image;
@@ -27,7 +27,7 @@ export const seedProducts = async () => {
     }
 
     await categories.forEach(async (category) => {
-      let newCategory = new Category({
+      const newCategory = new Category({
         name: category,
       });
       await newCategory.save();

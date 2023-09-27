@@ -1,8 +1,6 @@
 import { randUser } from "@ngneat/falso";
-import User, { IUser } from "../models/user";
+import User from "../models/user";
 import { hash } from "bcrypt";
-import { IList } from "../models/list";
-import { Types } from "mongoose";
 import Cart from "../models/cart";
 
 export const seedUsers = async () => {

@@ -1,11 +1,11 @@
 // User Model
 
 import { Schema, Types, model } from "mongoose";
-import Order, { IOrder } from "./order";
-import List, { IList } from "./list";
-import BillingDetails, { IBillingDetails } from "./billing";
-import Review, { IReview } from "./review";
-import Cart, { ICart } from "./cart";
+import { IOrder } from "./order";
+import { IList } from "./list";
+import { IBillingDetails } from "./billing";
+import { IReview } from "./review";
+import { ICart } from "./cart";
 
 /**
  * User data to store:

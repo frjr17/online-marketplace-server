@@ -13,7 +13,7 @@ export const seedCategories = async () => {
     "Health & Beauty",
   ];
 
-  for (let category of categories) {
+  for (const category of categories) {
     const categoryObj = new Category({ name: category });
     await categoryObj.save();
   }
