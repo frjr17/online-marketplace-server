@@ -7,19 +7,22 @@ export interface ICart {
   total: number;
   user: IUser;
 }
-const cartSchema = new Schema<ICart>({
-  products: [
-    {
+const cartSchema = new Schema<ICart>(
+  {
+    products: [
+      {
+        type: Types.ObjectId,
+        ref: "Product",
+      },
+    ],
+    total: Number,
+    user: {
       type: Types.ObjectId,
-      ref: "Product",
+      ref: "User",
     },
-  ],
-  total: Number,
-  user: {
-    type: Types.ObjectId,
-    ref: "User",
   },
-});
+  { timestamps: true }
+);
 
 const Cart = model<ICart>("Cart", cartSchema);
 

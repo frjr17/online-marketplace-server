@@ -11,19 +11,22 @@ export interface IBillingDetails {
   email: string;
   user: IUser;
 }
-const billingDetailsSchema = new Schema<IBillingDetails>({
-  fullName: String,
-  companyName: String,
-  streetAddress: String,
-  apartment: String,
-  townOrCity: String,
-  phoneNumber: Number,
-  email: String,
-  user: {
-    type: Types.ObjectId,
-    ref: "User",
+const billingDetailsSchema = new Schema<IBillingDetails>(
+  {
+    fullName: String,
+    companyName: String,
+    streetAddress: String,
+    apartment: String,
+    townOrCity: String,
+    phoneNumber: Number,
+    email: String,
+    user: {
+      type: Types.ObjectId,
+      ref: "User",
+    },
   },
-});
+  { timestamps: true }
+);
 
 const BillingDetails = model<IBillingDetails>(
   "BillingDetails",

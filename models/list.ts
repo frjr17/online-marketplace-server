@@ -8,20 +8,23 @@ export interface IList {
   total: number;
   user: IUser;
 }
-const listSchema = new Schema<IList>({
-  name: String,
-  products: [
-    {
+const listSchema = new Schema<IList>(
+  {
+    name: String,
+    products: [
+      {
+        type: Types.ObjectId,
+        ref: "Product",
+      },
+    ],
+    total: Number,
+    user: {
       type: Types.ObjectId,
-      ref: "Product",
+      ref: "User",
     },
-  ],
-  total: Number,
-  user: {
-    type: Types.ObjectId,
-    ref: "User",
   },
-});
+  { timestamps: true }
+);
 
 const List = model<IList>("List", listSchema);
 

@@ -42,62 +42,65 @@ export interface IUser {
   cart: ICart;
 }
 
-const userSchema = new Schema<IUser>({
-  firstName: {
-    type: String,
-    required: true,
-  },
-  lastName: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  isLinkedWithGoogle: {
-    type: Boolean,
-    required: true,
-  },
-  isVerfied: {
-    type: Boolean,
-    required: true,
-  },
-  registerToken: String,
-  passwordResetToken: String,
-  orders: [
-    {
-      type: Types.ObjectId,
-      ref: "Order",
+const userSchema = new Schema<IUser>(
+  {
+    firstName: {
+      type: String,
+      required: true,
     },
-  ],
-  lists: [
-    {
-      type: Types.ObjectId,
-      ref: "List",
+    lastName: {
+      type: String,
+      required: true,
     },
-  ],
-  billingDetails: {
-    type: Types.ObjectId,
-    ref: "BillingDetails",
-  },
-  profileImage: String,
-  reviews: [
-    {
-      type: Types.ObjectId,
-      ref: "Review",
+    email: {
+      type: String,
+      required: true,
     },
-  ],
-  isSubscribed: Boolean,
-  cart: {
-    type: Types.ObjectId,
-    ref: "Cart",
+    password: {
+      type: String,
+      required: true,
+    },
+    isLinkedWithGoogle: {
+      type: Boolean,
+      required: true,
+    },
+    isVerfied: {
+      type: Boolean,
+      required: true,
+    },
+    registerToken: String,
+    passwordResetToken: String,
+    orders: [
+      {
+        type: Types.ObjectId,
+        ref: "Order",
+      },
+    ],
+    lists: [
+      {
+        type: Types.ObjectId,
+        ref: "List",
+      },
+    ],
+    billingDetails: {
+      type: Types.ObjectId,
+      ref: "BillingDetails",
+    },
+    profileImage: String,
+    reviews: [
+      {
+        type: Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+    isSubscribed: Boolean,
+    cart: {
+      type: Types.ObjectId,
+      ref: "Cart",
+    },
   },
-});
+  { timestamps: true }
+);
 
 const User = model<IUser>("User", userSchema);
 
