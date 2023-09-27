@@ -28,8 +28,10 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
-  password?: string;
   isLinkedWithGoogle: boolean;
+  isVerfied: boolean;
+  registerToken?: string;
+  password?: string;
   passwordResetToken?: string;
   orders?: Types.Array<IOrder>;
   lists?: Types.Array<IList>;
@@ -61,6 +63,11 @@ const userSchema = new Schema<IUser>({
     type: Boolean,
     required: true,
   },
+  isVerfied: {
+    type: Boolean,
+    required: true,
+  },
+  registerToken: String,
   passwordResetToken: String,
   orders: [
     {
