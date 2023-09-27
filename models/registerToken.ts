@@ -8,6 +8,7 @@ const registerTokenSchema = new Schema<IRegiterToken>(
     isUsed: {
       type: Boolean,
       required: true,
+      default: false,
     },
   },
   { timestamps: true }
