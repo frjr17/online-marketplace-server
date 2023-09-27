@@ -25,6 +25,8 @@ export const post = async (req: Request, res: Response) => {
       user,
     });
 
+    const token = RegisterToken;
+
     await user.save();
     await cart.save();
 

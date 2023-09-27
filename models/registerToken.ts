@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 
-export interface IRegiterToken {
+export interface IRegisterToken {
   isUsed: boolean;
 }
-const registerTokenSchema = new Schema<IRegiterToken>(
+const registerTokenSchema = new Schema<IRegisterToken>(
   {
     isUsed: {
       type: Boolean,
@@ -14,6 +14,9 @@ const registerTokenSchema = new Schema<IRegiterToken>(
   { timestamps: true }
 );
 
-const RegiterToken = model<IRegiterToken>("RegiterToken", registerTokenSchema);
+const RegisterToken = model<IRegisterToken>(
+  "RegisterToken",
+  registerTokenSchema
+);
 
-export default RegiterToken;
+export default RegisterToken;
