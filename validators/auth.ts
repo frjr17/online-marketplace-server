@@ -1,4 +1,5 @@
 import { body } from "express-validator";
+import User from "../models/user";
 
 export const registerValidator = () => {
   const name = body("firstName")
@@ -16,6 +17,14 @@ export const registerValidator = () => {
     .withMessage("Email can't be empty")
     .isEmail()
     .withMessage("This isn't a valid email address")
+    .custom(async (value) => {
+      const emailIsTaken = await User.find({ email: value });
+      if (emailIsTaken) {
+        return Promise.reject("This email address is already taken");
+      }
+
+      return true;
+    })
     .trim()
     .normalizeEmail();
 
