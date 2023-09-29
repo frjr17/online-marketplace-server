@@ -42,6 +42,7 @@ export const post = async (
     });
 
     const token = new RegisterToken();
+    await token.save();
 
     // Email part... for the moment, i'll just send the email token in the response (not secure)
 
