@@ -32,6 +32,8 @@ export const post = async (
       password,
       isSubscribed,
       isLinkedWithGoogle,
+      // Verification comes with token...
+      isVerified: false,
     });
 
     const cart = new Cart({
