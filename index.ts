@@ -3,6 +3,7 @@ import type { Express } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import createRouter from "express-file-routing";
+import morgan from "morgan";
 
 dotenv.config({ path: ".env.local" });
 
@@ -10,7 +11,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
-morgan;
+app.use(morgan("dev"));
 
 mongoose.connect(process.env.MONGO_DB_KEY as string).then(async () => {
   await createRouter(app);
