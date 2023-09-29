@@ -10,6 +10,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
+morgan;
 
 mongoose.connect(process.env.MONGO_DB_KEY as string).then(async () => {
   await createRouter(app);
