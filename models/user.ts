@@ -67,6 +67,7 @@ const userSchema = new Schema<IUser>(
     isVerfied: {
       type: Boolean,
       required: true,
+      default: false,
     },
     registerToken: String,
     passwordResetToken: String,
