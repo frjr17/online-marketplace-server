@@ -27,7 +27,6 @@ export interface IProduct {
   images?: string[];
   colors?: string[];
   sizes: string[];
-  variants: Types.Array<IProduct>;
   stockQuantity: number;
   rating: {
     rate: number;
@@ -46,12 +45,8 @@ const productSchema = new Schema<IProduct>(
     description: String,
     mainImage: String,
     images: [String],
-    variants: [
-      {
-        type: Types.ObjectId,
-        ref: "Variant",
-      },
-    ],
+    colors: [String],
+    sizes: [String],
     stockQuantity: Number,
     rating: {
       rate: Number,
