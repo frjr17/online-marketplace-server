@@ -46,6 +46,7 @@ export const register = async (
 
     // Email part... for the moment, i'll just send the email token in the response (not secure)
 
+    user.registerToken = token;
     await user.save();
     await cart.save();
 

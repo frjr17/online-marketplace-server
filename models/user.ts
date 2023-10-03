@@ -69,7 +69,10 @@ const userSchema = new Schema<IUser>(
       required: true,
       default: false,
     },
-    registerToken: String,
+    registerToken: {
+      type: Types.ObjectId,
+      ref: "RegisterToken",
+    },
     passwordResetToken: String,
     orders: [
       {
