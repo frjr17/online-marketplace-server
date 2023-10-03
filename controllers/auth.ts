@@ -86,8 +86,11 @@ export const validateToken = async (
     }
 
     if (registerToken?.isUsed) {
-      return res.status(400).send({ error: "This token is used" });
+      return res.status(400).send({ error: "This token was already used" });
     }
+
+    registerToken.isUsed = true;
+    await registerToken.save();
 
     const user = await User.findOne({ registerToken: token });
 
@@ -96,6 +99,7 @@ export const validateToken = async (
     }
 
     user.isVerfied = true;
+    user.registerToken = undefined;
     await user.save();
 
     // new JWT
