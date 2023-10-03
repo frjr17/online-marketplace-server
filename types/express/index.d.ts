@@ -6,9 +6,14 @@ export {};
 declare global {
   namespace Express {
     export interface Request {
-      state?: {
-        user?: string | IUser;
-      };
+      state: Partial<{
+        user: string | IUser;
+        data: any;
+        error: any;
+        httpStatus: any;
+        message: string;
+        success: boolean;
+      }>;
     }
   }
 }
