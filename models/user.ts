@@ -41,6 +41,17 @@ export interface IUser {
   reviews?: Types.Array<IReview>;
   isSubscribed: boolean;
   cart: ICart;
+  toClient(): {
+    firstName: string;
+    lastName: string;
+    email: string;
+    orders?: Types.Array<IOrder>;
+    lists?: Types.Array<IList>;
+    billingDetails?: IBillingDetails;
+    profileImage?: string;
+    reviews?: Types.Array<IReview>;
+    cart: ICart;
+  };
 }
 
 const userSchema = new Schema<IUser>(
@@ -104,7 +115,36 @@ const userSchema = new Schema<IUser>(
       ref: "Cart",
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    methods: {
+      toClient() {
+        const {
+          _id,
+          orders,
+          lists,
+          reviews,
+          firstName,
+          lastName,
+          email,
+          profileImage,
+          cart,
+        } = this.toObject();
+
+        return {
+          _id,
+          orders,
+          lists,
+          reviews,
+          firstName,
+          lastName,
+          email,
+          profileImage,
+          cart,
+        };
+      },
+    },
+  }
 );
 
 const User = model<IUser>("User", userSchema);
