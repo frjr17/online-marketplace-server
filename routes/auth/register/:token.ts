@@ -10,6 +10,8 @@ export const post = async (req: Request<IPostRequestParams>, res: Response) => {
     const { token } = req.params;
     const registerToken = await RegisterToken.findById(token);
 
+    // In that case, I prefer to set the validators personally...
+
     if (!registerToken) {
       return res.status(400).send({ error: "Token does not exist" });
     }

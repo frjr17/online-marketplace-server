@@ -12,7 +12,6 @@ declare global {
         error: any;
         httpStatus: any;
         message: string;
-        success: boolean;
       }>;
     }
   }

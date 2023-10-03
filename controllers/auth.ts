@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import User from "../models/user";
 import Cart from "../models/cart";
 import RegisterToken from "../models/registerToken";
@@ -14,7 +14,8 @@ interface IPostRequestBody {
 
 export const register = async (
   req: Request<any, any, IPostRequestBody>,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) => {
   try {
     const {
@@ -48,12 +49,16 @@ export const register = async (
     await user.save();
     await cart.save();
 
-    return res.status(200).json({
+    req.state.data = {
       message: "User created!",
       success: true,
       user,
       token: token._id.toString(),
-    });
+    };
+    req.state.httpStatus = 200;
+    req.state.message = "User created successfully!";
+
+    return next();
   } catch (error) {
     console.error("Register Post error\n", error);
     res.send({ error: "There's some error" });

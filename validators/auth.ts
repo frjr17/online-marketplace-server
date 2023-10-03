@@ -18,7 +18,7 @@ export const registerValidator = () => {
     .isEmail()
     .withMessage("This isn't a valid email address")
     .custom(async (value) => {
-      const emailIsTaken = await User.find({ email: value });
+      const emailIsTaken = await User.findOne({ email: value });
       if (emailIsTaken) {
         return Promise.reject("This email address is already taken");
       }
