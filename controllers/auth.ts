@@ -99,7 +99,6 @@ export const validateToken = async (
     }
 
     user.isVerfied = true;
-    user.registerToken = undefined;
     await user.save();
 
     // new JWT
