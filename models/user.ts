@@ -6,6 +6,7 @@ import { IList } from "./list";
 import { IBillingDetails } from "./billing";
 import { IReview } from "./review";
 import { ICart } from "./cart";
+import { IRegisterToken } from "./registerToken";
 
 /**
  * User data to store:
@@ -30,7 +31,7 @@ export interface IUser {
   email: string;
   isLinkedWithGoogle: boolean;
   isVerfied: boolean;
-  registerToken?: string;
+  registerToken?: IRegisterToken;
   password?: string;
   passwordResetToken?: string;
   orders?: Types.Array<IOrder>;
