@@ -101,10 +101,8 @@ export const validateToken = async (
     user.isVerfied = true;
     await user.save();
 
-    // new JWT
-
     req.state.data = {
-      user: {},
+      user: user.toClient(),
     };
     req.state.message = "User verified successfully";
     return next();
