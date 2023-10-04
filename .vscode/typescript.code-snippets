@@ -1,0 +1,21 @@
+{
+  "createMiddleware": {
+    "prefix": "createMiddleWare",
+    "body": [
+      "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}Params{}",
+      "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ResBody{}",
+      "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ReqBody{}",
+      "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ReqQuery{}",
+      "",
+      "export const ${TM_FILENAME_BASE} = async (req:Request<I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}Params,I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ResBody,I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ReqBody,I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ReqQuery>,res:Response<I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ResBody>,next:NextFunction)=>{",
+      "  try {",
+      "    ${5:code}",
+      "  } catch (error) {",
+      "    console.error(\"${TM_FILENAME_BASE} error\\n\", error);",
+      "    next({error,message:\"Error ${4:errorMessage}\"});",
+      "  }",
+      "}"
+    ],
+    "description": "createMiddleware"
+  }
+}
