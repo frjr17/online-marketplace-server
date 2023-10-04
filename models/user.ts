@@ -8,23 +8,6 @@ import { IReview } from "./review";
 import { ICart } from "./cart";
 import { IRegisterToken } from "./registerToken";
 
-/**
- * User data to store:
- * name: string
- * lastName: string
- * email: string
- * password: string (only optional if "isLinkedWithGoogle")
- * isLinkedWithGoogle?: boolean
- * passwordResetToken?: string
- * orders?: [Order]
- * lists: [List] (In that, there must be the favorite list at top.)
- * billingDetails?: BillingDetails (A different schema)
- * profileImage?: string
- * reviews?: [Review]
- * isSubscribed: boolean
- * cart: Cart
- */
-
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -41,17 +24,19 @@ export interface IUser {
   reviews?: Types.Array<IReview>;
   isSubscribed: boolean;
   cart: ICart;
-  toClient(): {
-    firstName: string;
-    lastName: string;
-    email: string;
-    orders?: Types.Array<IOrder>;
-    lists?: Types.Array<IList>;
-    billingDetails?: IBillingDetails;
-    profileImage?: string;
-    reviews?: Types.Array<IReview>;
-    cart: ICart;
-  };
+  toClient(): IUserToClient;
+}
+
+export interface IUserToClient {
+  firstName: string;
+  lastName: string;
+  email: string;
+  orders?: Types.Array<IOrder>;
+  lists?: Types.Array<IList>;
+  billingDetails?: IBillingDetails;
+  profileImage?: string;
+  reviews?: Types.Array<IReview>;
+  cart: ICart;
 }
 
 const userSchema = new Schema<IUser>(

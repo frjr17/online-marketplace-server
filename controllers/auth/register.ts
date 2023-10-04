@@ -56,8 +56,8 @@ export const register = async (
     user.registerToken = token;
     await user.save();
 
+    req.state.user = user.toClient();
     req.state.data = {
-      user,
       token: token._id.toString(),
     };
     req.state.httpStatus = 200;

@@ -16,7 +16,7 @@ export const createJWT = async (
   next: NextFunction
 ) => {
   try {
-    // code
+    return next();
   } catch (error) {
     console.error("createJWT error\n", error);
     next({ error, message: "Error creating JWT" });
