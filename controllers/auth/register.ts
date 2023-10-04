@@ -45,9 +45,8 @@ export const register = async (
       isVerified: false,
     });
 
-    const cart = new Cart({
-      user,
-    });
+    const cart = new Cart({ user });
+    await cart.save();
 
     const token = new RegisterToken();
     await token.save();
@@ -56,11 +55,8 @@ export const register = async (
 
     user.registerToken = token;
     await user.save();
-    await cart.save();
 
     req.state.data = {
-      message: "User created!",
-      success: true,
       user,
       token: token._id.toString(),
     };
