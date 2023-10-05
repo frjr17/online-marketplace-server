@@ -43,5 +43,17 @@ export const registerValidator = () => {
       "Your password must have one uppercase letter, one lowercase letter, a number and a symbol"
     );
 
-  return [name, lastName, email, password];
+  const isSubscribed = body("isSubscribed")
+    .notEmpty()
+    .withMessage("You must set if the user is subscribed or not.")
+    .isBoolean()
+    .withMessage("Subscribed value must be boolean");
+
+  const isLinkedWithGoogle = body("isLinkedWithGoogle")
+    .notEmpty()
+    .withMessage("You must set if the user is linked with google or not.")
+    .isBoolean()
+    .withMessage("Linked with google value must be boolean");
+
+  return [name, lastName, email, password, isSubscribed, isLinkedWithGoogle];
 };
