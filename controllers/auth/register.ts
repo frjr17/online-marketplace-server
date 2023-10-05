@@ -28,7 +28,6 @@ export const register = async (
 ) => {
   try {
     let hashedPassword;
-    // Hashing password
     if (!req.body.isLinkedWithGoogle) {
       hashedPassword = await hash(req.body.password, 12);
     }
