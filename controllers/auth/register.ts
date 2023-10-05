@@ -2,7 +2,14 @@ import { NextFunction, Request, Response } from "express";
 
 export interface IRegisterParams {}
 export interface IRegisterResBody {}
-export interface IRegisterReqBody {}
+export interface IRegisterReqBody {
+  firstName: string;
+  lastName: string;
+  isSubscribed: boolean;
+  isLinkedWithGoogle: boolean;
+  email: string;
+  password: boolean;
+}
 export interface IRegisterReqQuery {}
 
 export const register = async (
@@ -17,6 +24,7 @@ export const register = async (
 ) => {
   try {
     // Extract body
+    console.log(req.body);
     // Create new user
     // Create new Cart
     // Create verification body
