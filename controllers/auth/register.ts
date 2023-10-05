@@ -1,4 +1,8 @@
 import { NextFunction, Request, Response } from "express";
+import User from "../../models/user";
+import { hash } from "bcrypt";
+import Cart from "../../models/cart";
+import RegisterToken from "../../models/registerToken";
 
 export interface IRegisterParams {}
 export interface IRegisterResBody {}
@@ -8,7 +12,7 @@ export interface IRegisterReqBody {
   isSubscribed: boolean;
   isLinkedWithGoogle: boolean;
   email: string;
-  password: boolean;
+  password: string;
 }
 export interface IRegisterReqQuery {}
 
@@ -23,11 +27,37 @@ export const register = async (
   next: NextFunction
 ) => {
   try {
-    // Extract body
-    console.log(req.body);
+    let hashedPassword;
+    // Hashing password
+    if (!req.body.isLinkedWithGoogle) {
+      hashedPassword = await hash(req.body.password, 12);
+    }
+
     // Create new user
+    const user = await User.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: hashedPassword,
+      isSubscribed: req.body.isSubscribed,
+      isLinkedWithGoogle: req.body.isLinkedWithGoogle,
+      isVerified: false,
+    });
+
     // Create new Cart
-    // Create verification body
+    const cart = await Cart.create({ user });
+    user.cart = cart;
+
+    // Create verification token
+    const registerToken = await RegisterToken.create({});
+    user.registerToken = registerToken;
+
+    await user.save();
+    req.state.httpStatus = 200;
+    req.state.message = "User registered successfully";
+    req.state.data = {
+      user: user.toClient(),
+    };
 
     return next();
   } catch (error) {

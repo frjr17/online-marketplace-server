@@ -36,7 +36,6 @@ export interface IUserToClient {
   billingDetails?: IBillingDetails;
   profileImage?: string;
   reviews?: Types.Array<IReview>;
-  cart: ICart;
 }
 
 const userSchema = new Schema<IUser>(
@@ -113,7 +112,6 @@ const userSchema = new Schema<IUser>(
           lastName,
           email,
           profileImage,
-          cart,
         } = this.toObject();
 
         return {
@@ -125,7 +123,6 @@ const userSchema = new Schema<IUser>(
           lastName,
           email,
           profileImage,
-          cart,
         };
       },
     },
