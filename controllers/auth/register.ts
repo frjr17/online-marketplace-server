@@ -33,7 +33,6 @@ export const register = async (
       hashedPassword = await hash(req.body.password, 12);
     }
 
-    // Create new user
     const user = await User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -44,11 +43,9 @@ export const register = async (
       isVerified: false,
     });
 
-    // Create new Cart
     const cart = await Cart.create({ user });
     user.cart = cart;
 
-    // Create verification token
     const registerToken = await RegisterToken.create({});
     user.registerToken = registerToken;
 
