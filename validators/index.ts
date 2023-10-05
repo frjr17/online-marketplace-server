@@ -3,15 +3,25 @@ import { FieldValidationError, validationResult } from "express-validator";
 
 export const sendValidatorErrors = (errors: FieldValidationError[]) => {
   const errorObj: {
-    [name: string]: { message: string; name: string; value: string };
+    [name: string]: { message: string; name: string; value: string }[];
   } = {};
 
   errors.forEach((error) => {
-    errorObj[error.path] = {
-      message: error.msg,
-      name: error.path,
-      value: error.value,
-    };
+    if (errorObj[error.path]) {
+      errorObj[error.path].push({
+        message: error.msg,
+        name: error.path,
+        value: error.value,
+      });
+    } else {
+      errorObj[error.path] = [
+        {
+          message: error.msg,
+          name: error.path,
+          value: error.value,
+        },
+      ];
+    }
   });
 
   return errorObj;
