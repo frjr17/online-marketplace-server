@@ -16,7 +16,6 @@ export const initializeState = (
 
 export const sendState = (req: Request, res: Response) => {
   const { data, httpStatus, message } = req.state;
-  console.log(message, data);
   return res
     .status(httpStatus || 200)
     .send({ message, success: true, ...data });
