@@ -17,12 +17,12 @@ export const login = async (
   next: NextFunction
 ) => {
   try {
-    // extract data
     const { email } = req.body;
     const user = await User.findOne({ email });
 
     const loginToken = await LoginToken.create({ user });
     const token = await jwt.sign({ token: loginToken }, process.env.JWT_SECRET);
+
     loginToken.lastJwt = token;
     await loginToken.save();
 
