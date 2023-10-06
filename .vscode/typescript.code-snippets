@@ -2,6 +2,8 @@
   "createMiddleware": {
     "prefix": "createMiddleWare",
     "body": [
+      "import { NextFunction, Request, Response } from \"express\";",
+      "",
       "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}Params{}",
       "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ResBody{}",
       "export interface I${TM_FILENAME_BASE/(.)(.*)/${1:/capitalize}$2/}ReqBody{}",
