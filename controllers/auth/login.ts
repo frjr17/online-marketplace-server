@@ -23,6 +23,9 @@ export const login = async (
 
     const loginToken = await LoginToken.create({ user });
     const token = await jwt.sign({ token: loginToken }, process.env.JWT_SECRET);
+    loginToken.lastJwt = token;
+    await loginToken.save();
+
     req.state.data = { token };
     req.state.message = "User logged in successfully!";
     return next();
