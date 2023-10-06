@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import RegisterToken from "../../models/registerToken";
-import { register } from "module";
 import User from "../../models/user";
 
 export interface IValidateTokenParams {
