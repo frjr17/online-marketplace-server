@@ -1,5 +1,6 @@
-import { body } from "express-validator";
+import { body, param } from "express-validator";
 import User from "../models/user";
+import RegisterToken from "../models/registerToken";
 
 export const registerValidator = () => {
   const name = body("firstName")
@@ -56,4 +57,24 @@ export const registerValidator = () => {
     .withMessage("Linked with google value must be boolean");
 
   return [name, lastName, email, password, isSubscribed, isLinkedWithGoogle];
+};
+
+export const validateTokenValidator = () => {
+  const token = param("token")
+    .notEmpty()
+    .withMessage("You must provide a valid registration token.")
+    .custom(async (value) => {
+      const foundToken = await RegisterToken.findById(value);
+
+      if (!foundToken) {
+        return Promise.reject("The provided token doesn't exist here.");
+      }
+
+      if (foundToken.isUsed) {
+        return Promise.reject("This token is already used.");
+      }
+    })
+    .trim();
+
+  return [token];
 };
