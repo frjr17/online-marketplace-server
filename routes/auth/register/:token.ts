@@ -4,7 +4,7 @@ import { checkValidators } from "../../../validators";
 import { validateTokenValidator } from "../../../validators/auth";
 
 export const put = [
-  validateTokenValidator,
+  validateTokenValidator(),
   checkValidators,
   validateToken,
   sendState,
