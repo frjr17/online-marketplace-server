@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../../models/user";
 import LoginToken from "../../models/loginToken";
-
+import jwt from "jsonwebtoken";
 export interface ILoginParams {}
 export interface ILoginResBody {}
 export interface ILoginReqBody {
@@ -22,7 +22,7 @@ export const login = async (
     const user = await User.findOne({ email });
 
     const loginToken = await LoginToken.create({ user });
-
+    const token = await jwt;
     req.state.message = "User logged in successfully!";
     return next();
   } catch (error) {
