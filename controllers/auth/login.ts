@@ -22,7 +22,8 @@ export const login = async (
     const user = await User.findOne({ email });
 
     const loginToken = await LoginToken.create({ user });
-    const token = await jwt;
+    const token = await jwt.sign({ token: loginToken }, process.env.JWT_SECRET);
+    req.state.data = { token };
     req.state.message = "User logged in successfully!";
     return next();
   } catch (error) {
