@@ -1,7 +1,7 @@
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 import { IUser } from "./user";
 
-export interface IBillingDetails {
+export interface IBillingDetails extends Document {
   fullName: string;
   companyName: string;
   streetAddress: string;

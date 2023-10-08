@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
-export interface IOrder {
+export interface IOrder extends Document {
   // Define the properties of the Order interface here
 }
 const orderSchema = new Schema<IOrder>(

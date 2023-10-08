@@ -1,8 +1,8 @@
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 import { IProduct } from "./product";
 import { IUser } from "./user";
 
-export interface ICart {
+export interface ICart extends Document {
   products: Types.Array<IProduct>;
   total: number;
   user: IUser;

@@ -1,26 +1,8 @@
-// Product Model
-
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 import { ICategory } from "./category";
 import { IReview } from "./review";
 
-/**
- * Product data to save:
- * name: string
- * description?: string
- * mainImage: string
- * images?: [string]
- * colors?: []
- * sizes: []
- * stockQuatity: number
- * rating: {rate:number, count:number}
- * price: float (.2 decimals)
- * salesPrice?: float (.2 decimals)
- * reviews?:[]
- * categories: [Category]
- * url: string
- */
-export interface IProduct {
+export interface IProduct extends Document {
   name: string;
   description?: string;
   mainImage: string;

@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
-export interface IReview {
+export interface IReview extends Document {
   // Define the properties of the review interface here
 }
 const reviewSchema = new Schema<IReview>(

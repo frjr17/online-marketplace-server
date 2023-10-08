@@ -1,7 +1,7 @@
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 import { IProduct } from "./product";
 
-export interface ICategory {
+export interface ICategory extends Document {
   name: string;
   products: Types.Array<IProduct>;
 }

@@ -1,6 +1,6 @@
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 
-export interface ILoginToken {
+export interface ILoginToken extends Document {
   user: Types.ObjectId;
   lastJwt: string;
 }

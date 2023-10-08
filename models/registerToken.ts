@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
-export interface IRegisterToken {
+export interface IRegisterToken extends Document {
   isUsed: boolean;
 }
 const registerTokenSchema = new Schema<IRegisterToken>(

@@ -1,6 +1,6 @@
 // User Model
 
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 import { IOrder } from "./order";
 import { IList } from "./list";
 import { IBillingDetails } from "./billing";
@@ -8,7 +8,7 @@ import { IReview } from "./review";
 import { ICart } from "./cart";
 import { IRegisterToken } from "./registerToken";
 
-export interface IUser {
+export interface IUser extends Document {
   firstName: string;
   lastName: string;
   email: string;
