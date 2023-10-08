@@ -1,5 +1,5 @@
-import { Document, Schema, Types, model } from "mongoose";
-import { ICategory } from "./category";
+import { Document, FilterQuery, Model, Schema, Types, model } from "mongoose";
+import Category, { ICategory } from "./category";
 import { IReview } from "./review";
 
 export interface IProduct extends Document {
@@ -19,6 +19,11 @@ export interface IProduct extends Document {
   reviews?: IReview[];
   categories: Types.Array<ICategory>;
   url: string;
+}
+
+export interface IProductRest extends Model<IProduct> {
+  // eslint-disable-next-line no-unused-vars
+  getToClient(options?: FilterQuery<IProduct>): Promise<IProduct>;
 }
 
 const productSchema = new Schema<IProduct>(
@@ -48,6 +53,20 @@ const productSchema = new Schema<IProduct>(
   { timestamps: true }
 );
 
-const Product = model<IProduct>("Product", productSchema);
+productSchema.static(
+  "getToClient",
+  async function (options: FilterQuery<IProduct>) {
+    const products = await this.find(options)
+      .populate({
+        path: "categories",
+        model: Category,
+        select: "id name",
+      })
+      .select("-__v -createdAt -updatedAt");
+    return products;
+  }
+);
+
+const Product = model<IProduct, IProductRest>("Product", productSchema);
 
 export default Product;

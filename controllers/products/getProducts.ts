@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import Product from "../../models/product";
-import Category from "../../models/category";
 
 export interface IGetProductsParams {}
 export interface IGetProductsResBody {}
@@ -18,14 +17,7 @@ export const getProducts = async (
   next: NextFunction
 ) => {
   try {
-    const products = await Product.find()
-      .populate({
-        path: "categories",
-        model: Category,
-        select: "id name",
-      })
-      .select("-__v -createdAt -updatedAt");
-
+    const products = await Product.getToClient();
     req.state.data = {
       products,
     };
