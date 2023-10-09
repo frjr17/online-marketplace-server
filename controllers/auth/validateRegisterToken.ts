@@ -2,21 +2,21 @@ import { NextFunction, Request, Response } from "express";
 import RegisterToken from "../../models/registerToken";
 import User from "../../models/user";
 
-export interface IValidateTokenParams {
+export interface IValidateRegisterTokenParams {
   token: string;
 }
-export interface IValidateTokenResBody {}
-export interface IValidateTokenReqBody {}
-export interface IValidateTokenReqQuery {}
+export interface IValidateRegisterTokenResBody {}
+export interface IValidateRegisterTokenReqBody {}
+export interface IValidateRegisterTokenReqQuery {}
 
-export const validateToken = async (
+export const validateRegisterToken = async (
   req: Request<
-    IValidateTokenParams,
-    IValidateTokenResBody,
-    IValidateTokenReqBody,
-    IValidateTokenReqQuery
+    IValidateRegisterTokenParams,
+    IValidateRegisterTokenResBody,
+    IValidateRegisterTokenReqBody,
+    IValidateRegisterTokenReqQuery
   >,
-  res: Response<IValidateTokenResBody>,
+  res: Response<IValidateRegisterTokenResBody>,
   next: NextFunction
 ) => {
   try {
@@ -39,7 +39,7 @@ export const validateToken = async (
     req.state.message = "Register Token Validated Successfully!";
     return next();
   } catch (error) {
-    console.error("validateToken error\n", error);
+    console.error("validateRegisterToken error\n", error);
     next({ error, message: "Error validating register token." });
   }
 };

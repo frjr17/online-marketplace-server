@@ -1,11 +1,11 @@
 import { sendState } from "../../../controllers";
-import { validateToken } from "../../../controllers/auth/validateToken";
+import { validateRegisterToken } from "../../../controllers/auth/validateRegisterToken";
 import { checkValidators } from "../../../validators";
-import { validateTokenValidator } from "../../../validators/auth";
+import { validateRegisterTokenValidator } from "../../../validators/auth";
 
 export const put = [
-  validateTokenValidator(),
+  validateRegisterTokenValidator(),
   checkValidators,
-  validateToken,
+  validateRegisterToken,
   sendState,
 ];

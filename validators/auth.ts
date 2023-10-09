@@ -92,7 +92,7 @@ export const logoutValidator = () => {
   return [jwtToken];
 };
 
-export const validateTokenValidator = () => {
+export const validateRegisterTokenValidator = () => {
   const token = param("token")
     .notEmpty()
     .withMessage("You must provide a valid registration token.")
