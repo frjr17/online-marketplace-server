@@ -23,9 +23,16 @@ export const resetPasswordRequest = async (
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (user) {
-      // create password
       const passwordToken = await PasswordToken.create({});
       user.passwordResetToken = passwordToken;
+      await user.save();
+
+      //   While I fix the email issue...
+      console.log("\nPassword Token", passwordToken._id);
+
+      req.state.message = "Password token created and sent succsesfully!";
+      req.state.data = { token: passwordToken._id };
+      return next();
     }
   } catch (error) {
     console.error("resetPasswordRequest error\n", error);
