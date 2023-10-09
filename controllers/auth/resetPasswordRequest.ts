@@ -31,7 +31,6 @@ export const resetPasswordRequest = async (
       console.log("\nPassword Token", passwordToken._id);
 
       req.state.message = "Password token created and sent succsesfully!";
-      req.state.data = { token: passwordToken._id };
       return next();
     }
   } catch (error) {
