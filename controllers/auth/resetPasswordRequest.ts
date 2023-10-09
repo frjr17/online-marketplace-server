@@ -23,7 +23,7 @@ export const resetPasswordRequest = async (
     const { email } = req.body;
     const user = await User.findOne({ email });
     if (user) {
-      const passwordToken = await PasswordToken.create({});
+      const passwordToken = await PasswordToken.create({ user });
       user.passwordResetToken = passwordToken;
       await user.save();
 
