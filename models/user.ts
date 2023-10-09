@@ -7,6 +7,7 @@ import { IBillingDetails } from "./billing";
 import { IReview } from "./review";
 import { ICart } from "./cart";
 import { IRegisterToken } from "./registerToken";
+import { IPasswordToken } from "./passwordToken";
 
 export interface IUser extends Document {
   firstName: string;
@@ -15,7 +16,7 @@ export interface IUser extends Document {
   isLinkedWithGoogle: boolean;
   isVerfied: boolean;
   registerToken?: IRegisterToken;
-  password?: string;
+  password?: IPasswordToken;
   passwordResetToken?: string;
   orders?: Types.Array<IOrder>;
   lists?: Types.Array<IList>;
@@ -69,7 +70,10 @@ const userSchema = new Schema<IUser>(
       type: Types.ObjectId,
       ref: "RegisterToken",
     },
-    passwordResetToken: String,
+    passwordResetToken: {
+      type: Types.ObjectId,
+      ref: "PasswordToken",
+    },
     orders: [
       {
         type: Types.ObjectId,

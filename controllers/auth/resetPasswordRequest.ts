@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import User from "../../models/user";
+import PasswordToken from "../../models/passwordToken";
 
 export interface IResetPasswordRequestParams {}
 export interface IResetPasswordRequestResBody {}
@@ -23,6 +24,8 @@ export const resetPasswordRequest = async (
     const user = await User.findOne({ email });
     if (user) {
       // create password
+      const passwordToken = await PasswordToken.create({});
+      user.passwordResetToken = passwordToken;
     }
   } catch (error) {
     console.error("resetPasswordRequest error\n", error);
