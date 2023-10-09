@@ -16,8 +16,8 @@ export interface IUser extends Document {
   isLinkedWithGoogle: boolean;
   isVerfied: boolean;
   registerToken?: IRegisterToken;
-  password?: IPasswordToken;
-  passwordResetToken?: string;
+  password?: string;
+  passwordResetToken?: IPasswordToken;
   orders?: Types.Array<IOrder>;
   lists?: Types.Array<IList>;
   billingDetails?: IBillingDetails;
