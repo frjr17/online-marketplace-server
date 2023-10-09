@@ -1,7 +1,9 @@
-import { Document, Schema, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
+import { IUser } from "./user";
 
 export interface IPasswordToken extends Document {
   isUsed: boolean;
+  user: IUser;
 }
 const passwordToken = new Schema<IPasswordToken>(
   {
@@ -9,6 +11,10 @@ const passwordToken = new Schema<IPasswordToken>(
       type: Boolean,
       required: true,
       default: false,
+    },
+    user: {
+      type: Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }
